@@ -10,8 +10,10 @@ import java.util.List;
  * other types of data (such as json.. etc)
  */
 public interface Iutils {
-    List<team> fetchTeamsData() ;
-    List<weather> fetchWeatherData();
+    List<team> fetchTeamsData(String filePath) ;
+    List<weather> fetchWeatherData(String filePath);
+    String assignVariable(HashMap<String, Integer> distances, String dayWithSmallestTempSpread);
+    void processTeamData(HashMap<String, Integer> distances, String filePath, utils u);
+    void processWeatherData(HashMap<String, Integer> spread, String filePath, utils u);
 
-    String assignTeam(HashMap<String, Integer> distances, String dayWithSmallestTempSpread);
 }

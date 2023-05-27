@@ -6,5 +6,5 @@ package de.exxcellent.challenge;
  */
 
 public interface Iteam {
-    public int getAbsDistance(int goals, int goalsAllowed);
+    int getAbsDistance(int goals, int goalsAllowed);
 }
