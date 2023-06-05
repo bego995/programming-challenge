@@ -9,6 +9,12 @@ public class weather implements Iweather{
     int mxt = 0;
     int mnt = 0;
 
+    fetchData fetchWeatherDataCsv;
+
+    public weather(fetchData fetchWeatherDataCsv){
+        this.fetchWeatherDataCsv = fetchWeatherDataCsv;
+    }
+
     @Override
     public int getSpread(int mxt, int mnt) {
         return mxt - mnt;

@@ -22,24 +22,36 @@ public final class App {
         //a hashmap of day number and it's corresponding spread
         HashMap<String, Integer> spread = new HashMap<>();
 
+        fetchTeamCsv fetchTeamDataCsv = new fetchTeamCsv();
+        fetchWeatherCsv fetchWeatherCsv = new fetchWeatherCsv();
         String teamFilePath = "./src/main/resources/de/exxcellent/challenge/football.csv";
         String weatherFilePath = "./src/main/resources/de/exxcellent/challenge/weather.csv";
 
         //read the csv file and put into the above hashmaps
-        utils u = new utils();
-        u.processTeamData(distances, teamFilePath, u);
-        u.processWeatherData(spread, weatherFilePath, u);
+        List<team> teams = new team(fetchTeamDataCsv).fetchTeamDataCsv.getData(teamFilePath);
+        List<weather> wd = new weather(fetchWeatherCsv).fetchWeatherDataCsv.getData(weatherFilePath);
 
+        teams.forEach(team -> distances.put(team.teamName, team.getAbsDistance(team.goals, team.goalsAllowed)));
+        wd.forEach(weather -> spread.put(String.valueOf(weather.day), weather.getSpread(weather.mxt, weather.mnt)));
 
         String dayWithSmallestTempSpread = "Someday";     // Your day analysis function call …
         //call the function to assign the right day
-        dayWithSmallestTempSpread = u.assignVariable(spread, dayWithSmallestTempSpread);
+        dayWithSmallestTempSpread = assignVariable(spread,dayWithSmallestTempSpread);
         System.out.printf("Day with smallest temperature spread : %s%n", dayWithSmallestTempSpread);
 
         String teamWithSmallestGoalSpread = "A good team"; // Your goal analysis function call …
         //call the function to assign the right team
-        teamWithSmallestGoalSpread = u.assignVariable(distances, teamWithSmallestGoalSpread);
+        teamWithSmallestGoalSpread = assignVariable(distances, teamWithSmallestGoalSpread);
         System.out.printf("Team with smallest goal spread       : %s%n", teamWithSmallestGoalSpread);
+    }
 
+    public static String assignVariable(HashMap<String, Integer> hashMap, String s) {
+        for(Map.Entry<String, Integer> entry: hashMap.entrySet()) {
+            if (Objects.equals(entry.getValue(), Collections.min(hashMap.values()))) {
+                s = entry.getKey();
+                break;
+            }
+        }
+        return s;
     }
 }
