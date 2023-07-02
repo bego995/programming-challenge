@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class fetchWeatherCsv implements fetchData {
+public class fetchWeatherCsv implements IfetchData {
     @Override
     public List<weather> getData(String filePath) {
         List<weather> weatherDays = new ArrayList<>();
@@ -40,7 +40,7 @@ public class fetchWeatherCsv implements fetchData {
             } catch (IOException | CsvValidationException e) {
                 throw new RuntimeException(e);
             }
-            weather w = new weather(this);
+            weather w = new weather();
             w.day = Integer.parseInt(nextLine[0]);
             w.mxt = Integer.parseInt(nextLine[1]);
             w.mnt = Integer.parseInt(nextLine[2]);

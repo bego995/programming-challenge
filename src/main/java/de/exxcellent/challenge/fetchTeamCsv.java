@@ -15,7 +15,7 @@ import java.util.*;
  * this class holds essential functions for the program
  */
 
-public class fetchTeamCsv implements fetchData {
+public class fetchTeamCsv implements IfetchData {
 
     @Override
     public List<team> getData(String filePath) {
@@ -43,7 +43,7 @@ public class fetchTeamCsv implements fetchData {
             } catch (IOException | CsvValidationException e) {
                 throw new RuntimeException(e);
             }
-            team t = new team(this);
+            team t = new team();
             t.teamName = nextLine[0];
             t.games = Integer.parseInt(nextLine[1]);
             t.wins = Integer.parseInt(nextLine[2]);

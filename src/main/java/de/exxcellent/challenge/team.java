@@ -15,11 +15,6 @@ public class team implements Iteam{
     int goalsAllowed = 0;
     int points = 0;
 
-    fetchData fetchTeamDataCsv;
-
-    public team(fetchData fetchTeamDataCsv){
-        this.fetchTeamDataCsv = fetchTeamDataCsv;
-    }
     @Override
     public int getAbsDistance(int goals, int goalsAllowed) {
         return Math.abs(goals - goalsAllowed);

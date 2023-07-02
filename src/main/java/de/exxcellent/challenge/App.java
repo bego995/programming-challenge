@@ -22,14 +22,15 @@ public final class App {
         //a hashmap of day number and it's corresponding spread
         HashMap<String, Integer> spread = new HashMap<>();
 
-        fetchTeamCsv fetchTeamDataCsv = new fetchTeamCsv();
-        fetchWeatherCsv fetchWeatherCsv = new fetchWeatherCsv();
+        IfetchData fetchTeamDataCsv = new fetchTeamCsv();
+        IfetchData fetchWeatherCsv = new fetchWeatherCsv();
+
         String teamFilePath = "./src/main/resources/de/exxcellent/challenge/football.csv";
         String weatherFilePath = "./src/main/resources/de/exxcellent/challenge/weather.csv";
 
         //read the csv file and put into the above hashmaps
-        List<team> teams = new team(fetchTeamDataCsv).fetchTeamDataCsv.getData(teamFilePath);
-        List<weather> wd = new weather(fetchWeatherCsv).fetchWeatherDataCsv.getData(weatherFilePath);
+        List<team> teams = new fetchData(fetchTeamDataCsv).fetchData.getData(teamFilePath);
+        List<weather> wd = new fetchData(fetchWeatherCsv).fetchData.getData(weatherFilePath);
 
         teams.forEach(team -> distances.put(team.teamName, team.getAbsDistance(team.goals, team.goalsAllowed)));
         wd.forEach(weather -> spread.put(String.valueOf(weather.day), weather.getSpread(weather.mxt, weather.mnt)));
